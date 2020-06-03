@@ -17,9 +17,12 @@ def model(y,t):
         S = y[1]    # Substrate concentration (g/L)
         Ks = 1      # Half saturation constant (g/L)
         b = 0.2     # decay rate coefficient (1/s)
+        V = 100     # Bioreactor volume (L)
+        Sf = 0.1    # Feed substrate concentration (g/L)
+        F = 0.1     # Feed rate of substrate (L/s)
         mu = mumax*S/(Ks+S)
         dXdt = mu*X-b*X
-        dSdt = -YXs*X
+        dSdt = -YXs*X + F * Sf / V
         return [dXdt,dSdt]
  
 # intial condition
